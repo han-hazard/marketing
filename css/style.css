@@ -128,7 +128,7 @@
         border: 1px solid #cdedfb;
         color: #368df6;
         border-radius: 30px;
-        padding: 5px 25px;
+        padding: 5px 45px;
     }
     
     .thongTin .right .span img {
@@ -153,26 +153,28 @@
     
     .detail .left {
         float: left;
-        width: 67%;
+        margin-left: -40px;
+        margin-right: -18px;
         background-color: #fff;
         padding-left: 40px;
-        padding-right: 20px;
+        padding-right: 50px;
         overflow: hidden;
     }
     
     .detail .left .items {
         width: 100%;
-        margin-left: -15px;
+        /* margin-left: -15px; */
         /* margin-right: 20px  ; */
     }
     
     .detail .left h3 {
-        margin: 40px 0px;
+        margin: 60px 20px;
     }
     
     .detail .left .text {
         width: 100%;
         overflow: hidden;
+        margin-left: 20px;
     }
     
     .detail .left h5 {
@@ -182,23 +184,24 @@
     
     .detail .left .item p {
         padding-top: 20px;
-        /* padding-right: -20px; */
+        /* padding-right: 20px */
     }
     
     .youtube {
         width: 95%;
-        margin: 0 auto;
+        margin-left: 20px;
         background-color: #f69191;
         color: #fff;
         text-align: center;
         padding: 150px 0;
-        margin-right: 38px;
+        margin-right: -118px;
     }
     
     .reflect {
         float: right;
         padding-top: 18px;
-        margin-right: 28;
+        margin-right: -15px;
+        margin-left: 20px;
     }
     
     .reflect a {
@@ -209,6 +212,7 @@
     
     .detail .left .tag {
         margin-bottom: 100px;
+        margin-left: 15px;
     }
     
     .detail .left .tag h4 {
@@ -229,7 +233,7 @@
     
     .detail .right {
         float: left;
-        width: 30%;
+        /* width: 30%; */
         font-size: 15px;
         background-color: #fff;
         margin-left: 30px;
@@ -252,7 +256,7 @@
         float: left;
         background-color: #d2f1ff;
         border-radius: 25px;
-        font-size: 12px;
+        font-size: 10px;
         margin: 10px 5px;
         overflow: hidden;
         padding: 10px 15px;
@@ -357,6 +361,7 @@
         width: 100%;
         position: relative;
         margin-top: 30px;
+        font-size: 12px;
     }
     
     .address .left {
@@ -372,6 +377,7 @@
         width: 100%;
         overflow: hidden;
         padding-top: 50px;
+        font-size: 12px;
     }
     
     .end .left {
@@ -382,3 +388,25 @@
         float: right;
     }
     /* end footer */
+    /* reponsive */
+    
+    @media (max-width: 768px) {
+        .detail .right {
+            width: 83%;
+            margin-top: 10px;
+            margin-left: -20px;
+        }
+        .congTy {
+            width: 79%;
+        }
+        .job {
+            width: 79%;
+        }
+        .thongTin .left .text {
+            margin-left: -30px;
+        }
+        .thongTin .right {
+            margin-left: -100px;
+        }
+    }
+    /* end */
