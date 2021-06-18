@@ -101,11 +101,26 @@ ORDER BY invoice_lines.qty DESC
 limit 10
 
 -- 6	Liệt kê danh sách KH cùng số lần mua hàng của họ	
-
-
+SELECT customer.name ,invoice_lines.qty FROM invoice_lines
+INNER JOIN invoices on invoice_lines.invoice_id = invoices.id
+INNER JOIN customer on customer.id = invoices.id
+GROUP BY invoice_lines.qty
 -- 7	Thống kê tổng tiền thu được trong từng tháng của năm 2017	
+SELECT  invoices.date , sum(invoice_lines.qty*invoice_lines.unit_price) as totalMoth FROM invoice_lines
+INNER JOIN invoices on invoice_lines.invoice_id =invoices.id
+WHERE  year(cdate)=2017
+GROUP BY month(invoices.date)
 
 -- 8	Tìm số sản phẩm bán được trong tháng 3 năm 2018 mà có thời gian tạo trong năm 2017	
+SELECT invoice_lines.qty  FROM invoice_lines
+INNER JOIN invoices on invoice_lines.invoice_id = invoices.id
+INNER JOIN customer on customer.id = invoices.id
+WHERE month(invoices.date)=03 and year(invoices.date)=2018 and year(invoices.cdate)=2017
+GROUP by invoices.date
 
--- 9	Liệt kê danh sách các KH mà không mua hàng trong 6 tháng gần nhất			
+-- 9	Liệt kê danh sách các KH mà không mua hàng trong 6 tháng gần nhất		
+SELECT customer.name from invoices
+INNER JOIN customer on invoices.customer_id = customer.id
+where DATEDIFF(CURRENT_DATE(),invoices.date)>30
+GROUP by name;
 
