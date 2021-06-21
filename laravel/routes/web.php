@@ -16,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/form','FormController@index')->name('add');
 Route::post('/form','FormController@add');
 Route::get('/view','FormController@view')->name('view');
+Route::get('/langguage/{language}','LanguageController@index')->name('language.index');
+ 

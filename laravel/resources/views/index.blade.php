@@ -20,6 +20,12 @@
    <div class="container">
        <legend></legend>
        <table class="table table-hover">
+            
+            <div class="btn-group">
+                <a class="btn btn-primary" href="{{route('language.index',['en'])}}" role="button">English</a>
+                <a class="btn btn-danger" href="{{route('language.index',['vi'])}}" role="button">Tiếng Việt </a>
+            </div>
+            
            <thead>
                <tr>
                    <th>name</th>
