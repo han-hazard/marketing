@@ -15,25 +15,37 @@
 <body>
     
     <div class="container">
-        <form action="{{Route('add')}}" method="POST" role="form">
+        <form action="" method="POST" role="form">
             @csrf
             <legend>Form add</legend>
         
             <div class="form-group">
                 <label for="">Name</label>
                 <input type="text" class="form-control" name="name" placeholder="Input field">
+                @error('name')
+                    <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="">Address</label>
                 <input type="text" class="form-control" name="address" placeholder="Input field">
+                @error('address')
+                    <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="">Email</label>
                 <input type="email" class="form-control" name="email" placeholder="Input field">
+                @error('email')
+                    <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="">Content</label>
                 <input type="text" class="form-control" name="content" placeholder="Input field">
+                @error('content')
+                    <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
+                @enderror
             </div>
         
             

@@ -25,6 +25,8 @@
                 <a class="btn btn-primary" href="{{route('language.index',['en'])}}" role="button">English</a>
                 <a class="btn btn-danger" href="{{route('language.index',['vi'])}}" role="button">Tiếng Việt </a>
             </div>
+            <br>
+            <a class="btn btn-success" href="{{route('add')}}" role="button">add new</a>
             
            <thead>
                <tr>
@@ -35,12 +37,14 @@
                </tr>
            </thead>
            <tbody>
+           @foreach($con as $cons)
                <tr>
-                   <td>{{$_REQUEST['name']}}</td>
-                   <td>{{$_REQUEST['address']}}</td>
-                   <td>{{$_REQUEST['email']}}</td>
-                   <td>{{$_REQUEST['content']}}</td>
+                  <td>{{$cons->name}}</td>
+                  <td>{{$cons->address}}</td>
+                  <td>{{$cons->email}}</td>
+                  <td>{{$cons->content}}</td>
                </tr>
+            @endforeach
            </tbody>
        </table>
        

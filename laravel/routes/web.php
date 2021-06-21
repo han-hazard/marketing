@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/form','FormController@index')->name('add');
-Route::post('/form','FormController@add');
-Route::get('/view','FormController@view')->name('view');
+Route::get('/form','FormController@index')->name('index');
+Route::get('/add','FormController@add')->name('add');
+Route::post('/add','FormController@post_add');
 Route::get('/langguage/{language}','LanguageController@index')->name('language.index');
  
