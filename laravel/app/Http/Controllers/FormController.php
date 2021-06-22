@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request ;
 use App\Models\Contact;
+use Illuminate\Support\Facades\Auth;
 
 class FormController extends Controller
 {
@@ -42,8 +43,19 @@ class FormController extends Controller
         return redirect()->route('index');
         
     }
-    public function post_login()
+    public function login()
     {
         return view('login');
     }
+    public function post_login(Request $request)
+    {
+        $check = Auth::attempt($request->only('email','password'),$request->has('remember'));
+        if($check){
+            return redirect()->route('admin.index');
+        }
+        return redirect()->back();
+
+        return redirect()->route('add');
+    }
+    
 }

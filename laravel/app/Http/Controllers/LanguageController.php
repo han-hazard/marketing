@@ -14,9 +14,9 @@ class LanguageController extends Controller
         //     $request->session()->put('language',$language);
         // }
         // return redirect()->back();
-        if($language){
-            Session::put('language',$language);
-        }
+        // if($language){
+        //     Session::put('language',$language);
+        // }
         return redirect()->back();
     }
 }
