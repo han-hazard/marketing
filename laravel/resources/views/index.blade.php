@@ -20,13 +20,13 @@
    <div class="container">
        <legend></legend>
        <table class="table table-hover">
+                <div class="btn-group">
+                    <a class="btn btn-primary" href="{{route('language.index',['en'])}}" role="button">English</a>
+                    <a class="btn btn-danger" href="{{route('language.index',['vi'])}}" role="button">Tiếng Việt </a>
+                </div>
+                <br>
+                <a class="btn btn-success" href="{{route('login')}}" role="button">Add new</a>
             
-            <div class="btn-group">
-                <a class="btn btn-primary" href="{{route('language.index',['en'])}}" role="button">English</a>
-                <a class="btn btn-danger" href="{{route('language.index',['vi'])}}" role="button">Tiếng Việt </a>
-            </div>
-            <br>
-            <a class="btn btn-success" href="{{route('add')}}" role="button">add new</a>
             
            <thead>
                <tr>

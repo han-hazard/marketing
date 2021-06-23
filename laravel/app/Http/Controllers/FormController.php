@@ -15,7 +15,8 @@ class FormController extends Controller
     }
     public function add()
     {
-        return view('add');
+       // echo 'hien thi';
+      return view('add');
 
     }
     public function post_add()
@@ -49,13 +50,21 @@ class FormController extends Controller
     }
     public function post_login(Request $request)
     {
+       
+       // $password = $request->password;
+       
         $check = Auth::attempt($request->only('email','password'),$request->has('remember'));
+        //dd($check);
         if($check){
-            return redirect()->route('admin.index');
+            return redirect()->route('AddContact');
         }
-        return redirect()->back();
-
-        return redirect()->route('add');
+       return redirect()->back();
+        // if($check){
+        //     return redirect()->route('add');
+        // }
+        // return redirect()->back();
+        
+        // dd($request);
     }
     
 }

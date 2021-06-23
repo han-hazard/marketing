@@ -19,8 +19,6 @@ class User extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->bigInteger('created_by')->unsigned();
-            $table->foreign('created_by')->references('id')->on('contact');
             $table->rememberToken();
             $table->timestamps();
         });

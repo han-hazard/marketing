@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -24,7 +25,7 @@ class UserController extends Controller
             'email' => 'required|unique:contact',
             'password' => 'required',
             'same_password' => 'required|same:password',
-            'created_by' => 'required',
+            
         ],[
             'name.required'=>'Tên không được để trống',
             'email.required'=>'Email không được để trống',
@@ -32,16 +33,14 @@ class UserController extends Controller
             'password.required'=>'password không được để trống',
             'same_password.required'=>'same_password không được để trống',
             'same_password.same' => 'Nhập lại mật khẩu không chính xác',
-            'created_by.required'=>'same_password không được để trống',
         ]);
         User::create([
             'name' => request()->name,
             'email' => request()->email,
-            'password' => request()->password,
-            'created_by' => request()->created_by,
+            'password' => bcrypt($request ->password),
         ]);
         $password = bcrypt($request ->password);
         $request->merge(['password'=>$password]);
         return redirect()->route('user');
-    }
+    } 
 }

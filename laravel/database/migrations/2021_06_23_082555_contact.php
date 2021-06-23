@@ -19,6 +19,8 @@ class Contact extends Migration
             $table->string('address');
             $table->string('email')->unique();
             $table->string('content');
+            $table->bigInteger('created_by')->unsigned();
+            $table->foreign('created_by')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ class Contact extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contact');
+        //
     }
 }

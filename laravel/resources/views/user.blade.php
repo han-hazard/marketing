@@ -28,7 +28,6 @@
                    <th>id</th>
                    <th>name</th>
                    <th>email</th>
-                   <th>created_by</th>
                    <th>created_at</th>
                </tr>
            </thead>
@@ -38,7 +37,6 @@
                   <td>{{$data->id}}</td>
                   <td>{{$data->name}}</td>
                   <td>{{$data->email}}</td>
-                  <td>{{$data->created_by}}</td>
                   <td>{{$data->created_at}}</td>
                </tr>
             @endforeach
