@@ -33,6 +33,7 @@
                    <th>name</th>
                    <th>address</th>
                    <th>email</th>
+                   <th>created_by</th>
                    <th>content</th>
                </tr>
            </thead>
@@ -42,6 +43,7 @@
                   <td>{{$cons->name}}</td>
                   <td>{{$cons->address}}</td>
                   <td>{{$cons->email}}</td>
+                  <td>{{$cons->created_by}}</td>
                   <td>{{$cons->content}}</td>
                </tr>
             @endforeach

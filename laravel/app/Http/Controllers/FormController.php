@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\sendMail;
 use Illuminate\Http\Request ;
 use App\Models\Contact;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class FormController extends Controller
 {
@@ -26,6 +28,7 @@ class FormController extends Controller
             'email' => 'required|unique:contact',
             'address' => 'required',
             'content' => 'required',
+            'created_by' => 'required',
         ],[
             'name.required'=>'Tên không được để trống',
             'name.max'=>'Tên không được quá 150 ký tự',
@@ -33,12 +36,14 @@ class FormController extends Controller
             'address.required'=>'Địa chỉ không được để trống',
             'email.required'=>'Email không được để trống',
             'content.required'=>'Nội dung không được để trống',
+            'created_by.required'=>'Nội dung không được để trống',
         ]);
         Contact::create([
             'name' => request()->name,
             'address' => request()->address,
             'email' => request()->email,
             'content' => request()->content,
+            'created_by' => request()->created_by,
         ]);
 
         return redirect()->route('index');
@@ -65,6 +70,18 @@ class FormController extends Controller
         // return redirect()->back();
         
         // dd($request);
+    }
+    public function sendmail()
+    {
+        $Container = [
+            'title' => 'TRAN DINH HAN',
+            'body' => 'Xin chao moi nguoi'
+        ];
+        //echo 'ich';
+        Mail::to('ngoich08@gmail.com')->send(new sendMail($Container));
+        // Mail::subject('NGO NGO');
+        echo 'gui mail thanh cong ';
+        
     }
     
 }

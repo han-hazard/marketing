@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FormController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,14 +25,14 @@ use Illuminate\Support\Facades\Route;
     Route::get('/login','FormController@login')->name('login');
     Route::post('/login','FormController@post_login')->name('login');
 
+    Route::get('SendMail',[FormController::class,'sendmail']);
+    // Route::get('mail','FormController@sendmail');
+
     Route::get('/user','UserController@user')->name('user');
 
     Route::get('/user-add','UserController@add')->name('user_add');
     Route::post('/user-add','UserController@user_add');
 
     Route::get('/langguage/{language}','LanguageController@index')->name('language.index');
-
-
-
 
 

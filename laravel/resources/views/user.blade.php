@@ -21,7 +21,7 @@
        <legend></legend>
        <table class="table table-hover">
             <br>
-            <a class="btn btn-success" href="{{route('user_add')}}" role="button">add new</a>
+            <a class="btn btn-success" href="{{route('user_add')}}" role="button">register</a>
             
            <thead>
                <tr>

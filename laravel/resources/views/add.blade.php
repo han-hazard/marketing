@@ -47,6 +47,13 @@
                     <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
                 @enderror
             </div>
+            <div class="form-group">
+                <label for="">Created_by</label>
+                <input type="text" class="form-control" name="created_by" placeholder="Input field">
+                @error('created_by')
+                    <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
+                @enderror
+            </div>
         
             
         
