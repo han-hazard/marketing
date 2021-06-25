@@ -16,39 +16,43 @@
     
     <div class="container">
         <form action="" method="POST" role="form">
+            <div class="btn-group">
+                <a class="btn btn-primary" href="/AddContact/lang=en" role="button">English</a>
+                <a class="btn btn-danger" href="/AddContact/lang=vi" role="button">Tiếng Việt </a>
+            </div>
             @csrf
             <legend>Form add</legend>
         
             <div class="form-group">
-                <label for="">Name</label>
+                <label for="">{{__('message.name')}}</label>
                 <input type="text" class="form-control" name="name" placeholder="Input field">
                 @error('name')
                     <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
                 @enderror
             </div>
             <div class="form-group">
-                <label for="">Address</label>
+                <label for="">{{__('message.address')}}</label>
                 <input type="text" class="form-control" name="address" placeholder="Input field">
                 @error('address')
                     <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
                 @enderror
             </div>
             <div class="form-group">
-                <label for="">Email</label>
+                <label for="">{{__('message.email')}}</label>
                 <input type="email" class="form-control" name="email" placeholder="Input field">
                 @error('email')
                     <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
                 @enderror
             </div>
             <div class="form-group">
-                <label for="">Content</label>
+                <label for="">{{__('message.content')}}</label>
                 <input type="text" class="form-control" name="content" placeholder="Input field">
                 @error('content')
                     <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
                 @enderror
             </div>
             <div class="form-group">
-                <label for="">Created_by</label>
+                <label for="">{{__('message.created_by')}}</label>
                 <input type="text" class="form-control" name="created_by" placeholder="Input field">
                 @error('created_by')
                     <small id="emailHelp" class="form-text text-danger">{{$message}}</small>

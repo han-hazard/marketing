@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FormController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -29,10 +30,19 @@ use Illuminate\Support\Facades\Route;
     // Route::get('mail','FormController@sendmail');
 
     Route::get('/user','UserController@user')->name('user');
-
+    
     Route::get('/user-add','UserController@add')->name('user_add');
     Route::post('/user-add','UserController@user_add');
+    
+    // Route::get('/langguage/{language}','LanguageController@index')->name('language.index');
+    Route::get('AddContact/lang={lang}',function($lang){
+        App::setlocale($lang);
+        return view('add');
+    });
 
-    Route::get('/langguage/{language}','LanguageController@index')->name('language.index');
+    Route::get('/user','UserController@user')->name('user.admin');
 
 
+    Route::group(['prefix'=>'admin','middleware'=> 'auth'],function(){
+        Route::get('/useradmin','UserController@user')->name('user.admin');
+    });

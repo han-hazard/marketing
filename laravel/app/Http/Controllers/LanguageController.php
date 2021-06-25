@@ -3,20 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Session;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 
 
 class LanguageController extends Controller
 {
     public function index(Request $request,$language)
     {
-        // if($language){
-        //     $request->session()->put('language',$language);
-        // }
-        // return redirect()->back();
-        // if($language){
-        //     Session::put('language',$language);
-        // }
+        
+        if($language){
+            Session::put('language',$language);
+        }
+        App::setLocale($language);
+        // $col= collect(['hello']);
+        // print_r($col);
         return redirect()->back();
     }
 }
