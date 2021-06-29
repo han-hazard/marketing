@@ -23,6 +23,7 @@
                 
                 <br>
                 <a class="btn btn-success" href="{{route('login')}}" role="button">Add new</a>
+                <a class="btn btn-primary" href="{{route('user')}}" role="button">manager user</a>
             
             
            <thead>

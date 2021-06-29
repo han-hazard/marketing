@@ -7,6 +7,7 @@ use Illuminate\Http\Request ;
 use App\Models\Contact;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Models\User;
 
 class FormController extends Controller
 {
@@ -49,6 +50,7 @@ class FormController extends Controller
         return redirect()->route('index');
         
     }
+
     public function login()
     {
         return view('login');
@@ -70,6 +72,57 @@ class FormController extends Controller
         // return redirect()->back();
         
         // dd($request);
+    }
+    public function forget()
+    {
+        return view('forget');
+    }
+    public function post_forget(Request $request)
+    {
+        $email = $request->email;
+        $check=User::where('email',$email)->first();
+        // dd($request->toArray());
+        if(!$check){
+            
+            return redirect()->back();
+        }
+        // ->with('warning','email chưa được đăng ký tạo tài khoản')
+        Mail::send('emailPass',[
+            
+            'email'=>$request->email,
+        ],function($message) use($request){
+            $message->from('trandinhhan30081996@gmail.com');
+            $message->to($request->email);
+            $message-> subject('lấy lại mật khẩu');
+        });
+        return redirect()->route('login');
+    }
+    public function change()
+    {
+        return view('changePassword');
+    }
+    public function post_change(Request $request)
+    {
+        request()->validate([
+            // 'name' => 'required',
+            // 'email' => 'required|unique:contact',
+            'password' => 'required',
+            'same_password' => 'required|same:password',
+            // 'email' => 'required|unique:users,email'
+            
+        ],[
+            // 'name.required'=>'Tên không được để trống',
+            // 'email.required'=>'Email không được để trống',
+            // 'email.unique'=>'Email đã tồn tại',
+            'password.required'=>'password không được để trống',
+            'same_password.required'=>'Nhập lại mật khẩu không được để trống',
+            'same_password.same' => 'Nhập lại mật khẩu không chính xác',
+        ]);
+        $email= $request->email;
+        User::where('email',$email)->update([
+            'password'=> bcrypt($request ->password),
+        ]);
+        return redirect()->route('login');
     }
     public function sendmail()
     {

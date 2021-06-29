@@ -53,6 +53,52 @@ class UserController extends Controller
             $message-> subject('test mail nhes');
         });
         
-        return redirect()->route('user');
+        return redirect()->route('user')->with('success','thêm mới thành công ');
     } 
+
+    public function edit($id)
+    {
+        $user = User::find($id);
+        return view('edit_user',compact('user'));
+    }
+    
+    public function post_edit(Request $request, $id)
+    {
+        request()->validate([
+            'name' => 'required',
+            // 'email' => 'required|unique:contact',
+            'password' => 'required',
+            'same_password' => 'required|same:password',
+            'email' => 'required|email'
+            
+        ],[
+            'name.required'=>'Tên không được để trống',
+            'email.required'=>'Email không được để trống',
+            // 'email.unique'=>'Email đã tồn tại',
+            'password.required'=>'password không được để trống',
+            'same_password.required'=>'Nhập lại mật khẩu không được để trống',
+            'same_password.same' => 'Nhập lại mật khẩu không chính xác',
+        ]);
+        User::where('id', $id)->update([
+            'name' =>  request()->name,
+            'email' =>  request()->email,
+            'password' =>   bcrypt($request ->password),
+            
+        ]);
+        return redirect()->route('user')->with('success','thay đổi thành công ');
+    }
+
+    public function delete($id)
+    {
+        $user=User::find($id);
+        if($user->contacts->count()>0){
+            return redirect()->route('user')->with('error','user đang có contact , không thể xóa');
+        }else{
+            $user->delete();
+            return redirect()->route('user')->with('success','xóa thành công');
+        }
+        // User::where('id', $id)->delete();
+        
+        
+    }
 }

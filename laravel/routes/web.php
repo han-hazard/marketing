@@ -16,15 +16,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::group(['prefix'=>'form','middleware'=>'auth'],function(){
+Route::group(['prefix'=>'admin'],function(){
     Route::get('/','FormController@index')->name('index');
     //Route::get('/AddContact','FormController@add_ht')->name('hienthi');
 
     Route::get('/AddContact','FormController@add')->name('AddContact');
     Route::post('/AddContact','FormController@post_add');
-
+    
     Route::get('/login','FormController@login')->name('login');
     Route::post('/login','FormController@post_login')->name('login');
+    Route::get('/forget','FormController@forget')->name('forget');
+    Route::post('/forget','FormController@post_forget');
+    Route::get('/change','FormController@change')->name('change');
+    Route::post('/change','FormController@post_change');
+
 
     Route::get('SendMail',[FormController::class,'sendmail']);
     // Route::get('mail','FormController@sendmail');
@@ -33,12 +38,40 @@ use Illuminate\Support\Facades\Route;
     
     Route::get('/user-add','UserController@add')->name('user_add');
     Route::post('/user-add','UserController@user_add');
+
+    Route::get('/edit-user/{id}','UserController@edit')->name('edit_user');
+    Route::post('/edit-user/{id}','UserController@post_edit');
+
+    Route::get('/delete-user/{id}','UserController@delete')->name('delete_user');
+
     
-    // Route::get('/langguage/{language}','LanguageController@index')->name('language.index');
     Route::get('AddContact/lang={lang}',function($lang){
         App::setlocale($lang);
         return view('add');
     });
+});
+    // Route::get('/','FormController@index')->name('index');
+    // //Route::get('/AddContact','FormController@add_ht')->name('hienthi');
+
+    // Route::get('/AddContact','FormController@add')->name('AddContact');
+    // Route::post('/AddContact','FormController@post_add');
+
+    // Route::get('/login','FormController@login')->name('login');
+    // Route::post('/login','FormController@post_login')->name('login');
+
+    // Route::get('SendMail',[FormController::class,'sendmail']);
+    // // Route::get('mail','FormController@sendmail');
+
+    // Route::get('/user','UserController@user')->name('user');
+    
+    // Route::get('/user-add','UserController@add')->name('user_add');
+    // Route::post('/user-add','UserController@user_add');
+    
+    // // Route::get('/langguage/{language}','LanguageController@index')->name('language.index');
+    // Route::get('AddContact/lang={lang}',function($lang){
+    //     App::setlocale($lang);
+    //     return view('add');
+    // });
 
     Route::get('/user','UserController@user')->name('user.admin');
 

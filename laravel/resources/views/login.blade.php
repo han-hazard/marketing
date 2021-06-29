@@ -20,14 +20,21 @@
             @csrf
             <legend>Form login</legend>
             <div class="form-group">
-                <label for="">email</label>
+                <label for="">Email:</label>
                 <input type="text" class="form-control" name="email" id="email" placeholder="Input field">
             </div>
             <div class="form-group">
-                <label for="">password</label>
+                <label for="">Password:</label>
                 <input type="password" class="form-control" name="password" id="password" placeholder="Input field">
             </div>
-            <button type="submit" class="btn btn-primary">login</button>
+            <button type="submit" class="btn btn-primary">Login</button>
+            
+            <a class="btn btn-success" href="{{route('user_add')}}" role="">Registration</a>
+            
+            <div class="btn-group">
+                <a class="btn btn-warning" href="{{route('forget')}}" role="button">Forget account and password </a>
+            </div>
+            
         </form>
     </div>
     </div>

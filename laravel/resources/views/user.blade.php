@@ -20,8 +20,22 @@
    <div class="container">
        <legend></legend>
        <table class="table table-hover">
+             @if(Session::has('error'))
+             <div class="alert alert-danger">
+                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                 {{Session::get('error')}}
+             </div>
+            @endif
+
+            @if(Session::has('success'))
+             <div class="alert alert-success">
+                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                 {{Session::get('success')}}
+             </div>
+             @endif
+             
             <br>
-            <a class="btn btn-success" href="{{route('user_add')}}" role="button">register</a>
+            <a class="btn btn-success" href="{{route('user_add')}}" role="button">ADD</a>
             
            <thead>
                <tr>
@@ -29,6 +43,7 @@
                    <th>name</th>
                    <th>email</th>
                    <th>created_at</th>
+                   <th>action</th>
                </tr>
            </thead>
            <tbody>
@@ -38,6 +53,10 @@
                   <td>{{$data->name}}</td>
                   <td>{{$data->email}}</td>
                   <td>{{$data->created_at}}</td>
+                  <td>
+                    <a href="{{route('edit_user',$data->id)}}" class="btn text-primary" title="Edit">Sửa</a>
+                    <a href="{{route('delete_user',$data->id)}}" title="Delete" class="btn text-danger">Xóa</a>
+                  </td>
                </tr>
             @endforeach
            </tbody>
