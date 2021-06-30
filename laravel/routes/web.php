@@ -15,20 +15,25 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/login','FormController@login')->name('login');
+Route::post('/login','FormController@post_login');
 
-Route::group(['prefix'=>'admin'],function(){
+Route::get('/change/{id}','FormController@change')->name('change');
+Route::post('/change/{id}','FormController@post_change');
+
+Route::get('/','FormController@home')->name('home');
+
+Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::get('/','FormController@index')->name('index');
     //Route::get('/AddContact','FormController@add_ht')->name('hienthi');
 
     Route::get('/AddContact','FormController@add')->name('AddContact');
     Route::post('/AddContact','FormController@post_add');
     
-    Route::get('/login','FormController@login')->name('login');
-    Route::post('/login','FormController@post_login')->name('login');
+
     Route::get('/forget','FormController@forget')->name('forget');
     Route::post('/forget','FormController@post_forget');
-    Route::get('/change','FormController@change')->name('change');
-    Route::post('/change','FormController@post_change');
+
 
 
     Route::get('SendMail',[FormController::class,'sendmail']);
@@ -43,6 +48,8 @@ Route::group(['prefix'=>'admin'],function(){
     Route::post('/edit-user/{id}','UserController@post_edit');
 
     Route::get('/delete-user/{id}','UserController@delete')->name('delete_user');
+
+    Route::get('/list','FormController@list')->name('list');
 
     
     Route::get('AddContact/lang={lang}',function($lang){
@@ -76,6 +83,6 @@ Route::group(['prefix'=>'admin'],function(){
     Route::get('/user','UserController@user')->name('user.admin');
 
 
-    Route::group(['prefix'=>'admin','middleware'=> 'auth'],function(){
-        Route::get('/useradmin','UserController@user')->name('user.admin');
-    });
+    // Route::group(['prefix'=>'admin','middleware'=> 'auth'],function(){
+    //     Route::get('/useradmin','UserController@user')->name('user.admin');
+    // });

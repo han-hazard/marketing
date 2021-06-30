@@ -20,14 +20,14 @@ class Authenticate extends Middleware
         }
         
     }
-    public function handle($request, closure $next,...$guards)
-    {
-        $guards = empty($guards)?[null]:$guards;
+    // public function handle($request, closure $next,...$guards)
+    // {
+    //     $guards = empty($guards)?[null]:$guards;
 
-        if(!Auth::check()){
-            return redirect()->route('login');
-        } 
-        return $next($request);
-    }
+    //     if(!Auth::check()){
+    //         return redirect()->route('login');
+    //     } 
+    //     return $next($request);
+    // }
 }
 

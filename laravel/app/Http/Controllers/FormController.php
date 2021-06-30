@@ -11,6 +11,10 @@ use App\Models\User;
 
 class FormController extends Controller
 {
+    public function home()
+    {
+        return view('homen');
+    }
     public function index()
     {
         $con=Contact::all();
@@ -63,7 +67,7 @@ class FormController extends Controller
         $check = Auth::attempt($request->only('email','password'),$request->has('remember'));
         //dd($check);
         if($check){
-            return redirect()->route('AddContact');
+            return redirect()->route('index');
         }
        return redirect()->back();
         // if($check){
@@ -79,50 +83,61 @@ class FormController extends Controller
     }
     public function post_forget(Request $request)
     {
+        request()->validate([
+            
+            'email' => 'required',
+            
+        ],[
+            
+            'email.required'=>'email không được để trống',
+            
+        ]);
         $email = $request->email;
         $check=User::where('email',$email)->first();
+        
         // dd($request->toArray());
         if(!$check){
             
-            return redirect()->back();
+            return redirect()->back()->with('error','email bạn vừa nhập chưa được đăng ký');
         }
         // ->with('warning','email chưa được đăng ký tạo tài khoản')
         Mail::send('emailPass',[
-            
+            'check'=> $check,
             'email'=>$request->email,
         ],function($message) use($request){
             $message->from('trandinhhan30081996@gmail.com');
             $message->to($request->email);
             $message-> subject('lấy lại mật khẩu');
         });
-        return redirect()->route('login');
+        return redirect()->route('login')->with('success','kiểm tra email của bạn nhé!!!');
     }
-    public function change()
+    public function change($id)
     {
-        return view('changePassword');
+        $re=User::find($id);
+        return view('changePassword',compact('re'));
     }
-    public function post_change(Request $request)
+    public function post_change(Request $request ,$id)
     {
         request()->validate([
             // 'name' => 'required',
-            // 'email' => 'required|unique:contact',
             'password' => 'required',
             'same_password' => 'required|same:password',
-            // 'email' => 'required|unique:users,email'
-            
+            'email' => 'required',  
         ],[
             // 'name.required'=>'Tên không được để trống',
-            // 'email.required'=>'Email không được để trống',
+            'email.required'=>'Email không được để trống',
             // 'email.unique'=>'Email đã tồn tại',
             'password.required'=>'password không được để trống',
             'same_password.required'=>'Nhập lại mật khẩu không được để trống',
             'same_password.same' => 'Nhập lại mật khẩu không chính xác',
         ]);
         $email= $request->email;
-        User::where('email',$email)->update([
+        User::where('id',$id)->update([
+            'email'=>$request->email,
             'password'=> bcrypt($request ->password),
         ]);
-        return redirect()->route('login');
+
+        return redirect()->route('login')->with('success','reset mật khẩu thành công, mời bạn đăng nhập');
     }
     public function sendmail()
     {
@@ -135,6 +150,13 @@ class FormController extends Controller
         // Mail::subject('NGO NGO');
         echo 'gui mail thanh cong ';
         
+    }
+
+    public function list()
+    {
+        $lists=User::all();
+        $contact= Contact::all();
+        return view('list',compact('lists','contact'));
     }
     
 }

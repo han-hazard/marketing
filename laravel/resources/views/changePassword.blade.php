@@ -17,13 +17,12 @@
         <form action="" method="POST" role="form">
             @csrf
             <legend>Form change password</legend>
-        
            
             <div class="form-group">
                 <label for="">Email</label>
-                <input type="email" class="form-control" name="email" placeholder="Input field">
+                <input type="email" class="form-control" value="{{$re->email}}" name="email" placeholder="Input field">
                 @error('email')
-                    <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
+                    <small id="emailHelp"  class="form-text text-danger">{{$message}}</small>
                 @enderror
             </div> 
             <div class="form-group">
@@ -40,7 +39,7 @@
                     <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
                 @enderror
             </div>
-            <button type="submit" class="btn btn-primary">Add</button>
+            <button type="submit" class="btn btn-primary">Reset</button>
         </form>
     </div>
 </body>

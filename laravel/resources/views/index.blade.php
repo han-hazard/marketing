@@ -22,8 +22,9 @@
        <table class="table table-hover">
                 
                 <br>
-                <a class="btn btn-success" href="{{route('login')}}" role="button">Add new</a>
+                <a class="btn btn-success" href="{{route('AddContact')}}" role="button">Add new</a>
                 <a class="btn btn-primary" href="{{route('user')}}" role="button">manager user</a>
+                <a class="btn btn-warning" href="{{route('list')}}" role="button">list phone</a>
             
             
            <thead>

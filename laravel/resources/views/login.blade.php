@@ -17,6 +17,12 @@
 <body>
     <div class="container">
         <form action="" method="POST" role="form">
+            @if(Session::has('success'))
+               <div class="alert alert-success">
+                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                   {{Session::get('success')}}
+               </div>
+            @endif
             @csrf
             <legend>Form login</legend>
             <div class="form-group">
