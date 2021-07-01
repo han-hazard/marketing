@@ -15,44 +15,41 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/login','FormController@login')->name('login');
-Route::post('/login','FormController@post_login');
 
-Route::get('/change/{id}','FormController@change')->name('change');
-Route::post('/change/{id}','FormController@post_change');
+Route::get('/', 'FormController@home')->name('home');
 
-Route::get('/','FormController@home')->name('home');
+Route::get('/login', 'FormController@login')->name('login');
+Route::post('/login', 'FormController@post_login');
+Route::get('/logout', 'FormController@logout')->name('logout')->middleware('auth');
 
-Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
-    Route::get('/','FormController@index')->name('index');
-    //Route::get('/AddContact','FormController@add_ht')->name('hienthi');
+Route::get('/change/{id}', 'FormController@change')->name('change');
+Route::post('/change/{id}', 'FormController@post_change');
 
-    Route::get('/AddContact','FormController@add')->name('AddContact');
-    Route::post('/AddContact','FormController@post_add');
-    
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
+    Route::get('/', 'FormController@index')->name('index');
 
-    Route::get('/forget','FormController@forget')->name('forget');
-    Route::post('/forget','FormController@post_forget');
+    Route::get('/AddContact', 'FormController@add')->name('AddContact');
+    Route::post('/AddContact', 'FormController@post_add');
 
+    Route::get('/forget', 'FormController@forget')->name('forget');
+    Route::post('/forget', 'FormController@post_forget');
 
-
-    Route::get('SendMail',[FormController::class,'sendmail']);
+    Route::get('SendMail', [FormController::class, 'sendmail']);
     // Route::get('mail','FormController@sendmail');
 
-    Route::get('/user','UserController@user')->name('user');
-    
-    Route::get('/user-add','UserController@add')->name('user_add');
-    Route::post('/user-add','UserController@user_add');
+    Route::get('/user', 'UserController@user')->name('user');
 
-    Route::get('/edit-user/{id}','UserController@edit')->name('edit_user');
-    Route::post('/edit-user/{id}','UserController@post_edit');
+    Route::get('/user-add', 'UserController@add')->name('user_add');
+    Route::post('/user-add', 'UserController@user_add');
 
-    Route::get('/delete-user/{id}','UserController@delete')->name('delete_user');
+    Route::get('/edit-user/{id}', 'UserController@edit')->name('edit_user');
+    Route::post('/edit-user/{id}', 'UserController@post_edit');
 
-    Route::get('/list','FormController@list')->name('list');
+    Route::get('/delete-user/{id}', 'UserController@delete')->name('delete_user');
 
-    
-    Route::get('AddContact/lang={lang}',function($lang){
+    Route::get('/list', 'FormController@list')->name('list');
+
+    Route::get('AddContact/lang={lang}', function ($lang) {
         App::setlocale($lang);
         return view('add');
     });
@@ -80,9 +77,14 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     //     return view('add');
     // });
 
-    Route::get('/user','UserController@user')->name('user.admin');
+    // Route::get('/user','UserController@user')->middleware('auth');
 
 
     // Route::group(['prefix'=>'admin','middleware'=> 'auth'],function(){
     //     Route::get('/useradmin','UserController@user')->name('user.admin');
     // });
+
+    Route::get('/test', function ()
+    {
+        return 'ok'; 
+    })->middleware('auth');

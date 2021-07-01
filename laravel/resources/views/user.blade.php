@@ -18,7 +18,8 @@
    
    
    <div class="container">
-       <legend></legend>
+       <legend>User manager</legend>
+       <a class="btn btn-danger" href="{{route('logout')}}" role="button">logout</a>
        <table class="table table-hover">
              @if(Session::has('error'))
              <div class="alert alert-danger">

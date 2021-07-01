@@ -16,7 +16,7 @@
     <div class="container">
          
          <div class="btn-group">
-             <a class="btn btn-success" href="{{route('login')}}" role="button">admin</a>
+             <a class="btn btn-success" href="{{route('index')}}" role="button">admin</a>
              <a class="btn btn-primary" href="#" role="button">site</a>
              
          </div>

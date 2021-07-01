@@ -25,6 +25,7 @@
                 <a class="btn btn-success" href="{{route('AddContact')}}" role="button">Add new</a>
                 <a class="btn btn-primary" href="{{route('user')}}" role="button">manager user</a>
                 <a class="btn btn-warning" href="{{route('list')}}" role="button">list phone</a>
+                <a class="btn btn-danger" href="{{route('logout')}}" role="button">logout</a>
             
             
            <thead>

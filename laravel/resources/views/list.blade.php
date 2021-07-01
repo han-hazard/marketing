@@ -16,6 +16,7 @@
 
 <body>
     <div class="container">
+    <a class="btn btn-danger" href="{{route('logout')}}" role="button">logout</a>
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
@@ -25,10 +26,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($contact as $con)
+                    @foreach($lists as $list) 
                     <tr>
-                        <td>{{$con->name}}</td>
-                        <td>{{$con->content}}</td>
+                        <td>{{$list->name}}</td>
+                        @foreach($list->contacts as $contact) 
+                        <td>{{$contact->content}}</td>
+                        @endforeach
                     </tr>
                     @endforeach
                 </tbody>

@@ -15,6 +15,7 @@
 <body>
     
     <div class="container">
+    <a class="btn btn-danger" href="{{route('logout')}}" role="button">logout</a>
         <form action="" method="POST" role="form">
             @csrf
             <legend>Form add</legend>

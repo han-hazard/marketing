@@ -17,11 +17,12 @@
     <div class="container">
         <form action="" method="POST" role="form">
             <div class="btn-group">
-                <a class="btn btn-primary" href="/AddContact/lang=en" role="button">English</a>
-                <a class="btn btn-danger" href="/AddContact/lang=vi" role="button">Tiếng Việt </a>
+                <a class="btn btn-primary" href="/admin/AddContact/lang=en" role="button">English</a>
+                <a class="btn btn-warning" href="/admin/AddContact/lang=vi" role="button">Tiếng Việt </a>
+                <a class="btn btn-danger" href="{{route('logout')}}" role="button">logout</a>
             </div>
             @csrf
-            <legend>Form add</legend>
+            <legend>{{__('message.Form add')}}</legend>
         
             <div class="form-group">
                 <label for="">{{__('message.name')}}</label>
@@ -61,7 +62,7 @@
         
             
         
-            <button type="submit" class="btn btn-primary">Add</button>
+            <button type="submit" class="btn btn-primary">{{__('message.Add')}}</button>
         </form>
     </div>
     

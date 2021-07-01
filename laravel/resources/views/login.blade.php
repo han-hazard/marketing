@@ -18,7 +18,7 @@
     <div class="container">
         <form action="" method="POST" role="form">
             @if(Session::has('success'))
-               <div class="alert alert-success">
+               <div class="alert alert-danger">
                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                    {{Session::get('success')}}
                </div>
@@ -31,7 +31,7 @@
             </div>
             <div class="form-group">
                 <label for="">Password:</label>
-                <input type="password" class="form-control" name="password" id="password" placeholder="Input field">
+                <input type="text" class="form-control" name="password" id="password" placeholder="Input field">
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
             
@@ -45,5 +45,4 @@
     </div>
     </div>
 </body>
-
 </html>
